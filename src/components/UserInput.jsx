@@ -1,21 +1,4 @@
-import { useState } from "react";
-
-export default function UserInput() {
-  const [userInput, setUserInput] = useState({
-    initialInvestment: 10000,
-    annualInvestment: 1000,
-    expectedReturn: 6,
-    duration: 10,
-  });
-
-  function handleNewUserInput(property, value) {
-    setUserInput((prevInput) => {
-      return {
-        ...prevInput,
-        [property]: value,
-      };
-    });
-  }
+export default function UserInput({ userInput, changeInput }) {
   return (
     <section id="user-input">
       <p className="input-group">
@@ -25,9 +8,7 @@ export default function UserInput() {
             type="text"
             value={userInput.initialInvestment}
             required
-            onChange={(e) =>
-              handleNewUserInput("initialInvestment", e.target.value)
-            }
+            onChange={(e) => changeInput("initialInvestment", e.target.value)}
           />
         </div>
         <div>
@@ -36,9 +17,7 @@ export default function UserInput() {
             type="text"
             value={userInput.annualInvestment}
             required
-            onChange={(e) =>
-              handleNewUserInput("annualInvestment", e.target.value)
-            }
+            onChange={(e) => changeInput("annualInvestment", e.target.value)}
           />
         </div>
       </p>
@@ -49,9 +28,7 @@ export default function UserInput() {
             type="text"
             value={userInput.expectedReturn}
             required
-            onChange={(e) =>
-              handleNewUserInput("expectedReturn", e.target.value)
-            }
+            onChange={(e) => changeInput("expectedReturn", e.target.value)}
           />
         </div>
         <div>
@@ -60,7 +37,7 @@ export default function UserInput() {
             type="text"
             value={userInput.duration}
             required
-            onChange={(e) => handleNewUserInput("duration", e.target.value)}
+            onChange={(e) => changeInput("duration", e.target.value)}
           />
         </div>
       </p>
